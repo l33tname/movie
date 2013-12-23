@@ -1,6 +1,4 @@
-#ruby-sinatra-skell
-
-Just a minimal project skeleton
+#movie
 
 ##Include
 
