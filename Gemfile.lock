@@ -22,8 +22,6 @@ GEM
     multi_json (1.8.2)
     plucky (0.5.2)
       mongo (~> 1.5)
-    puma (2.7.1)
-      rack (>= 1.1, < 2.0)
     rack (1.5.2)
     rack-protection (1.5.1)
       rack
@@ -41,6 +39,5 @@ PLATFORMS
 DEPENDENCIES
   bson_ext
   mongo_mapper
-  puma
   rest-client
   sinatra
