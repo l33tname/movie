@@ -2,13 +2,15 @@ require "rest_client"
 require "json"
 
 class TheMovieDB
-	attr_accessor :apiKey, :baseURL, :header, :sessionId, :userId
+	attr_accessor :apiKey, :baseURL, :header, :sessionId, :userId, :zeit, :filme
 	def initialize(apiKey, sessionId, userId)
+		puts "init"
 		self.apiKey = apiKey
 		self.sessionId = sessionId
 		self.userId = userId
 		self.baseURL = "https://api.themoviedb.org"
 		self.header = {:accept => "application/json"} 
+		self.zeit = Time.now
 	end
 
 	def config
@@ -23,6 +25,34 @@ class TheMovieDB
 	def moviesPage(page)
 		response = JSON.parse RestClient.get "#{baseURL}/3/account/#{userId}/movie_watchlist?api_key=#{apiKey}&session_id=#{sessionId}&page=#{page}", header
 		response["results"]
+	end
+
+	def getMovie
+		puts "get movie"
+		filmeArray = Array.new
+
+		(1..totalPages).each do |page|
+			moviesPage(page).each do |film|
+				filmeArray << Movie.new(film["id"], film["title"], CONFIGURATION["images"]["base_url"] + CONFIGURATION["images"]["poster_sizes"][3] + film["poster_path"], film["release_date"].slice(0..3))
+			end
+		end
+
+		filmeArray.reverse!
+	end
+
+	def allMovie
+		@filme ||= getMovie 
+
+		puts "zeit #{Time.now-zeit}"
+		if Time.now-zeit > 60 #3600
+			puts "update cache"
+			@filme = getMovie
+			@zeit = Time.now
+		end
+
+		puts "title #{self.filme[0].title}"
+
+		@filme
 	end
 end
 
