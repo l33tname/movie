@@ -13,7 +13,7 @@
 	  <% for film in filme %>
 		<div class="frame span4">
 			<div class="title">
-				<b><%= "#{film.title.slice!(0, 24)}" %><%= "..." if (film.title.length > 24) %></b>
+				<b><%= film.title_short %></b>
 			</div>
 			<div class="images">
 				<img alt="<%= film.title %>" src="<%= film.imgurl %>" style="height:400px;">

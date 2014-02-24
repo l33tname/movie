@@ -9,11 +9,11 @@ configure do
 	set :erb, :locals => {:title => "Watchlist", :tagline => 'l33tname schaut schlechte Filme'}
 
 	AppConfig = YAML.load_file(File.expand_path("config.yaml", File.dirname(__FILE__)))
-	$api = TheMovieDB.new(AppConfig["ApiKey"], AppConfig["SessionId"], AppConfig["UserName"])
-	CONFIGURATION = $api.config
-	$api.allMovie
+	API = TheMovieDB.new(AppConfig["ApiKey"], AppConfig["SessionId"], AppConfig["UserName"])
+	CONFIGURATION = API.config
+	API.allMovie
 end
 
 get "/" do
-	erb :index, :locals => {:filme => $api.allMovie}
+	erb :index, :locals => {:filme => API.allMovie}
 end

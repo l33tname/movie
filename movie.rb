@@ -28,7 +28,6 @@ class TheMovieDB
 	end
 
 	def getMovie
-		puts "get movie"
 		filmeArray = Array.new
 
 		(1..totalPages).each do |page|
@@ -43,14 +42,11 @@ class TheMovieDB
 	def allMovie
 		@filme ||= getMovie 
 
-		puts "zeit #{Time.now-zeit}"
-		if Time.now-zeit > 60 #3600
+		if Time.now-@zeit > 60*60
 			puts "update cache"
 			@filme = getMovie
 			@zeit = Time.now
 		end
-
-		puts "title #{self.filme[0].title}"
 
 		@filme
 	end
@@ -65,4 +61,11 @@ class Movie
 		self.imgurl = imgurl
 		self.releaseYear = releaseYear
 	end
+
+	def title_short
+		short = title[0..25]
+		short += "..." if title.length > 25
+		short
+	end
+
 end
