@@ -1,5 +1,21 @@
 #movie
 
+##How to run
+
+1. Install ruby
+2. bundle install the gems
+3. add a `config.yaml` with
+4. git submodule init && git submodule update
+
+```
+ApiKey: "XYZ" 
+SessionId: "ZYX" 
+UserName: "SomeName"
+```
+
+5. ???
+6. Profit
+
 ##Include
 
 * [Sinatra](http://www.sinatrarb.com/)
