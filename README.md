@@ -5,7 +5,6 @@
 1. Install ruby
 2. bundle install the gems
 3. add a `config.yaml` with
-4. git submodule init && git submodule update
 
 ```
 ApiKey: "XYZ" 
@@ -13,8 +12,10 @@ SessionId: "ZYX"
 UserName: "SomeName"
 ```
 
-5. ???
-6. Profit
+4. git submodule init && git submodule update
+5. bundle exec pumactl -F puma.rb start
+6. ???
+7. Profit
 
 ##Include
 
