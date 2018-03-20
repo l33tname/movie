@@ -32,7 +32,8 @@ class TheMovieDB
 
 		(1..totalPages).each do |page|
 			moviesPage(page).each do |film|
-				filmeArray << Movie.new(film["id"], film["title"], CONFIGURATION["images"]["base_url"] + CONFIGURATION["images"]["poster_sizes"][3] + film["poster_path"], film["release_date"].slice(0..3))
+				img = "#{CONFIGURATION["images"]["secure_base_url"]}#{CONFIGURATION["images"]["poster_sizes"][3]}#{film["poster_path"]}"
+				filmeArray << Movie.new(film["id"], film["title"], img, film["release_date"].slice(0..3))
 			end
 		end
 
